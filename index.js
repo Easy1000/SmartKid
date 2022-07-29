@@ -11,7 +11,6 @@ let a, b, c;
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
-  // res.redirect("https://v2.jokeapi.dev/joke/Any");
 });
 
 app.post("/", (req, res, next) => {
