@@ -90,7 +90,7 @@ app.post("/div", (req, res) => {
 app.get("/wrong", (req, res) => {
   res.render("result", {
     score: "correct: " + correct + " wrong: " + wrong,
-    wrong: "wrong",
+    wrong: "Wrong",
   });
 });
 
