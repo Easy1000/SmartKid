@@ -3,11 +3,17 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
-app.use(express.static("public"))
+app.use(express.static("public"));
 
 let correct = 0;
 let wrong = 0;
 let a, b, c;
+
+let randomNumber = () => {
+  a = Math.floor(Math.random() * 10) + 1;
+  b = Math.floor(Math.random() * 10) + 1;
+  c = a * b;
+};
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
@@ -22,9 +28,7 @@ app.post("/", (req, res, next) => {
 });
 
 app.get("/add", (req, res) => {
-  // res.sendFile(__dirname + "/pages/add.html");
-  a = Math.floor(Math.random() * 10) + 1;
-  b = Math.floor(Math.random() * 10) + 1;
+  randomNumber();
   res.render("question", { question: a + " + " + b });
 });
 
@@ -39,8 +43,7 @@ app.post("/add", (req, res) => {
 });
 
 app.get("/sub", (req, res) => {
-  a = Math.floor(Math.random() * 10) + 1;
-  b = Math.floor(Math.random() * 10) + 1;
+  randomNumber();
   res.render("question", { question: a + " - " + b });
 });
 
@@ -55,8 +58,7 @@ app.post("/sub", (req, res) => {
 });
 
 app.get("/mul", (req, res) => {
-  a = Math.floor(Math.random() * 10) + 1;
-  b = Math.floor(Math.random() * 10) + 1;
+  randomNumber();
   res.render("question", { question: a + " x " + b });
 });
 
@@ -71,9 +73,7 @@ app.post("/mul", (req, res) => {
 });
 
 app.get("/div", (req, res) => {
-  a = Math.floor(Math.random() * 10) + 1;
-  b = Math.floor(Math.random() * 10) + 1;
-  c = a * b;
+  randomNumber();
   res.render("question", { question: c + " / " + b });
 });
 
