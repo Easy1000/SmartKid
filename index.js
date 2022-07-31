@@ -8,6 +8,7 @@ app.use(express.static("public"));
 let correct = 0;
 let wrong = 0;
 let a, b, c;
+let isItWrong = false;
 
 let randomNumber = () => {
   a = Math.floor(Math.random() * 10) + 1;
@@ -24,11 +25,15 @@ app.post("/", (req, res, next) => {
   else if (req.body.hasOwnProperty("sub")) res.redirect("/sub");
   else if (req.body.hasOwnProperty("mul")) res.redirect("/mul");
   else if (req.body.hasOwnProperty("div")) res.redirect("/div");
-  else res.redirect("/result");
+  else if (req.body.hasOwnProperty("score")) res.redirect("/result");
+  else res.redirect("/")
 });
 
 app.get("/add", (req, res) => {
-  randomNumber();
+  if (!isItWrong) {
+    randomNumber();
+  }
+  isItWrong = false;
   res.render("question", { question: a + " + " + b });
 });
 
@@ -38,12 +43,16 @@ app.post("/add", (req, res) => {
     res.redirect("/add");
   } else {
     wrong++;
-    res.redirect("/wrong");
+    isItWrong = true;
+    res.redirect("/add");
   }
 });
 
 app.get("/sub", (req, res) => {
-  randomNumber();
+  if (!isItWrong) {
+    randomNumber();
+  }
+  isItWrong = false;
   res.render("question", { question: a + " - " + b });
 });
 
@@ -53,12 +62,16 @@ app.post("/sub", (req, res) => {
     res.redirect("/sub");
   } else {
     wrong++;
-    res.redirect("/wrong");
+    isItWrong = true;
+    res.redirect("/sub");
   }
 });
 
 app.get("/mul", (req, res) => {
-  randomNumber();
+  if (!isItWrong) {
+    randomNumber();
+  }
+  isItWrong = false;
   res.render("question", { question: a + " x " + b });
 });
 
@@ -68,12 +81,16 @@ app.post("/mul", (req, res) => {
     res.redirect("/mul");
   } else {
     wrong++;
-    res.redirect("/wrong");
+    isItWrong = true;
+    res.redirect("/mul");
   }
 });
 
 app.get("/div", (req, res) => {
-  randomNumber();
+  if (!isItWrong) {
+    randomNumber();
+  }
+  isItWrong = false;
   res.render("question", { question: c + " / " + b });
 });
 
@@ -83,7 +100,8 @@ app.post("/div", (req, res) => {
     res.redirect("/div");
   } else {
     wrong++;
-    res.redirect("/wrong");
+    isItWrong = true;
+    res.redirect("/div");
   }
 });
 
