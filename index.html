@@ -19,12 +19,94 @@
     <div class="position-absolute top-50 start-50 translate-middle">
       <h1 class="text-center">SmartKid</h1>
 
-      <form class="btn-group" action="/" method="post">
-        <button class="btn btn-primary" name="add" type="submit">Addition</button>
-        <button class="btn btn-primary" name="sub" type="submit">Subtraction</button>
-        <button class="btn btn-primary" name="mul" type="submit">Multiplication</button>
-        <button class="btn btn-primary" name="div" type="submit">Division</button>
-        <button class="btn btn-primary" name="score" type="submit">Score</button>
+      <form class="dropdown" action="/" method="post">
+        <button
+          class="btn btn-primary dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Addition
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <button type="submit" name="addEasy" class="dropdown-item">
+              Easy
+            </button>
+          </li>
+          <li>
+            <button type="submit" name="" class="dropdown-item">Medium</button>
+          </li>
+          <li>
+            <button type="submit" name="" class="dropdown-item">Hard</button>
+          </li>
+        </ul>
+
+        <button
+          class="btn btn-primary dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Subtraction
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <button type="submit" name="addEasy" class="dropdown-item">
+              Easy
+            </button>
+          </li>
+          <li>
+            <button type="submit" name="" class="dropdown-item">Medium</button>
+          </li>
+          <li>
+            <button type="submit" name="" class="dropdown-item">Hard</button>
+          </li>
+        </ul>
+
+        <button
+          class="btn btn-primary dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Multiplication
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <button type="submit" name="addEasy" class="dropdown-item">
+              Easy
+            </button>
+          </li>
+          <li>
+            <button type="submit" name="" class="dropdown-item">Medium</button>
+          </li>
+          <li>
+            <button type="submit" name="" class="dropdown-item">Hard</button>
+          </li>
+        </ul>
+
+        <button
+          class="btn btn-primary dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Division
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <button type="submit" name="addEasy" class="dropdown-item">
+              Easy
+            </button>
+          </li>
+          <li>
+            <button type="submit" name="" class="dropdown-item">Medium</button>
+          </li>
+          <li>
+            <button type="submit" name="" class="dropdown-item">Hard</button>
+          </li>
+        </ul>
+
+        <button class="btn btn-primary" name="score" type="submit">
+          Score
+        </button>
       </form>
     </div>
 
@@ -34,6 +116,5 @@
       integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
       crossorigin="anonymous"
     ></script>
-
   </body>
 </html>

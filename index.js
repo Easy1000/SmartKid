@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res, next) => {
-  if (req.body.hasOwnProperty("add")) res.redirect("/add");
+  if (req.body.hasOwnProperty("addEasy")) res.redirect("/add");
   else if (req.body.hasOwnProperty("sub")) res.redirect("/sub");
   else if (req.body.hasOwnProperty("mul")) res.redirect("/mul");
   else if (req.body.hasOwnProperty("div")) res.redirect("/div");
