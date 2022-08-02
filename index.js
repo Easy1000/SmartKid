@@ -10,10 +10,30 @@ let wrong = 0;
 let a, b, c;
 let isItWrong = false;
 
-let randomNumber = () => {
+let randomNumberEasy = () => {
   a = Math.floor(Math.random() * 10) + 1;
   b = Math.floor(Math.random() * 10) + 1;
   c = a * b;
+};
+
+let randomNumberMedium = () => {
+  a = Math.floor(Math.random() * 15) + 10;
+  b = Math.floor(Math.random() * 15) + 10;
+  c = a * b;
+};
+
+let randomNumberHard = () => {
+  a = Math.floor(Math.random() * 25) + 25;
+  b = Math.floor(Math.random() * 25) + 25;
+  c = a * b;
+};
+
+let nextQuestion = (isItWrong, diff) => {
+  if (!isItWrong) {
+    if (diff === "easy") randomNumberEasy();
+    else if (diff === "medium") randomNumberMedium();
+    else if (diff === "hard") randomNumberHard();
+  }
 };
 
 app.get("/", (req, res) => {
@@ -21,87 +41,87 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res, next) => {
-  if (req.body.hasOwnProperty("addEasy")) res.redirect("/add");
-  else if (req.body.hasOwnProperty("sub")) res.redirect("/sub");
-  else if (req.body.hasOwnProperty("mul")) res.redirect("/mul");
-  else if (req.body.hasOwnProperty("div")) res.redirect("/div");
-  else if (req.body.hasOwnProperty("score")) res.redirect("/result");
-  else res.redirect("/")
+  // if (req.body.hasOwnProperty("addEasy")) res.redirect("/add");
+  // else if (req.body.hasOwnProperty("sub")) res.redirect("/sub");
+  // else if (req.body.hasOwnProperty("mul")) res.redirect("/mul");
+  // else if (req.body.hasOwnProperty("div")) res.redirect("/div");
+  // else if (req.body.hasOwnProperty("score")) res.redirect("/result");
+  // else res.redirect("/");
 });
 
-app.get("/add", (req, res) => {
-  if (!isItWrong) {
-    randomNumber();
-  }
+app.get("/add/:diff", (req, res) => {
+  let diff = req.params.diff;
+  nextQuestion(isItWrong, diff);
   isItWrong = false;
   res.render("question", { question: a + " + " + b });
 });
 
-app.post("/add", (req, res) => {
+app.post("/add/:diff", (req, res) => {
+  let diff = req.params.diff;
   if (Number(req.body.answer) == a + b) {
     correct++;
-    res.redirect("/add");
+    res.redirect("/add/" + diff);
   } else {
     wrong++;
     isItWrong = true;
-    res.redirect("/add");
+    res.redirect("/add/" + diff);
   }
 });
 
-app.get("/sub", (req, res) => {
-  if (!isItWrong) {
-    randomNumber();
-  }
+app.get("/sub/:diff", (req, res) => {
+  let diff = req.params.diff;
+  nextQuestion(isItWrong, diff);
   isItWrong = false;
   res.render("question", { question: a + " - " + b });
 });
 
-app.post("/sub", (req, res) => {
+app.post("/sub/:diff", (req, res) => {
+  let diff = req.params.diff;
   if (Number(req.body.answer) == a - b) {
     correct++;
-    res.redirect("/sub");
+    res.redirect("/sub/" + diff);
   } else {
     wrong++;
     isItWrong = true;
-    res.redirect("/sub");
+    res.redirect("/sub/" + diff);
   }
 });
 
-app.get("/mul", (req, res) => {
-  if (!isItWrong) {
-    randomNumber();
-  }
+app.get("/mul/:diff", (req, res) => {
+  let diff = req.params.diff;
+  nextQuestion(isItWrong, diff);
   isItWrong = false;
   res.render("question", { question: a + " x " + b });
 });
 
-app.post("/mul", (req, res) => {
+app.post("/mul/:diff", (req, res) => {
+  let diff = req.params.diff;
   if (Number(req.body.answer) == a * b) {
     correct++;
-    res.redirect("/mul");
+    res.redirect("/mul/" + diff);
   } else {
     wrong++;
     isItWrong = true;
-    res.redirect("/mul");
+    res.redirect("/mul/" + diff);
   }
 });
 
-app.get("/div", (req, res) => {
-  if (!isItWrong) {
-    randomNumber();
-  }
+app.get("/div/:diff", (req, res) => {
+  let diff = req.params.diff;
+  nextQuestion(isItWrong, diff);
   isItWrong = false;
   res.render("question", { question: c + " / " + b });
 });
 
-app.post("/div", (req, res) => {
+app.post("/div/:diff", (req, res) => {
+  let diff = req.params.diff;
   if (Number(req.body.answer) == a) {
     correct++;
-    res.redirect("/div");
+    res.redirect("/div/" + diff);
   } else {
     wrong++;
     isItWrong = true;
-    res.redirect("/div");
+    res.redirect("/div/" + diff);
   }
 });
 
@@ -118,7 +138,7 @@ app.post("/wrong", (req, res) => {
 
 app.get("/result", (req, res) => {
   res.render("result", {
-    score: "correct: " + correct + " wrong: " + wrong,
+    score: "correct: " + correct + " incorrect: " + wrong,
     wrong: "",
   });
 });

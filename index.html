@@ -19,7 +19,7 @@
     <div class="position-absolute top-50 start-50 translate-middle">
       <h1 class="text-center">SmartKid</h1>
 
-      <form class="dropdown" action="/" method="post">
+      <div class="dropdown form-check-inline">
         <button
           class="btn btn-primary dropdown-toggle"
           data-bs-toggle="dropdown"
@@ -29,18 +29,18 @@
         </button>
         <ul class="dropdown-menu">
           <li>
-            <button type="submit" name="addEasy" class="dropdown-item">
-              Easy
-            </button>
+            <a href="add/easy" class="dropdown-item">Easy</a>
           </li>
           <li>
-            <button type="submit" name="" class="dropdown-item">Medium</button>
+            <a href="/add/medium" class="dropdown-item">Medium</a>
           </li>
           <li>
-            <button type="submit" name="" class="dropdown-item">Hard</button>
+            <a href="/add/hard" class="dropdown-item">Hard</a>
           </li>
         </ul>
+      </div>
 
+      <div class="dropdown form-check-inline">
         <button
           class="btn btn-primary dropdown-toggle"
           data-bs-toggle="dropdown"
@@ -50,18 +50,19 @@
         </button>
         <ul class="dropdown-menu">
           <li>
-            <button type="submit" name="addEasy" class="dropdown-item">
-              Easy
-            </button>
+            <a href="/sub/easy" class="dropdown-item">Easy</a>
+          </li>
+
+          <li>
+            <a href="/sub/medium" class="dropdown-item">Medium</a>
           </li>
           <li>
-            <button type="submit" name="" class="dropdown-item">Medium</button>
-          </li>
-          <li>
-            <button type="submit" name="" class="dropdown-item">Hard</button>
+            <a href="/sub/hard" class="dropdown-item">Hard</a>
           </li>
         </ul>
+      </div>
 
+      <div class="dropdown form-check-inline">
         <button
           class="btn btn-primary dropdown-toggle"
           data-bs-toggle="dropdown"
@@ -71,18 +72,19 @@
         </button>
         <ul class="dropdown-menu">
           <li>
-            <button type="submit" name="addEasy" class="dropdown-item">
-              Easy
-            </button>
+            <a href="/mul/easy" class="dropdown-item">Easy</a>
+          </li>
+
+          <li>
+            <a href="/mul/medium" class="dropdown-item">Medium</a>
           </li>
           <li>
-            <button type="submit" name="" class="dropdown-item">Medium</button>
-          </li>
-          <li>
-            <button type="submit" name="" class="dropdown-item">Hard</button>
+            <a href="/mul/hard" class="dropdown-item">Hard</a>
           </li>
         </ul>
+      </div>
 
+      <div class="dropdown form-check-inline">
         <button
           class="btn btn-primary dropdown-toggle"
           data-bs-toggle="dropdown"
@@ -92,22 +94,19 @@
         </button>
         <ul class="dropdown-menu">
           <li>
-            <button type="submit" name="addEasy" class="dropdown-item">
-              Easy
-            </button>
+            <a href="/div/easy" class="dropdown-item">Easy</a>
+          </li>
+
+          <li>
+            <a href="/div/medium" class="dropdown-item">Medium</a>
           </li>
           <li>
-            <button type="submit" name="" class="dropdown-item">Medium</button>
-          </li>
-          <li>
-            <button type="submit" name="" class="dropdown-item">Hard</button>
+            <a href="/div/hard" class="dropdown-item">Hard</a>
           </li>
         </ul>
+      </div>
 
-        <button class="btn btn-primary" name="score" type="submit">
-          Score
-        </button>
-      </form>
+      <a href="/result" class="btn btn-primary">Score</a>
     </div>
 
     <!-- Bootstrap JS -->
