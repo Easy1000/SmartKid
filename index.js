@@ -10,7 +10,6 @@ let wrong = 0;
 let a, b, c;
 let isItWrong = false;
 
-
 let randomNumberEasy = () => {
   a = Math.floor(Math.random() * 10) + 1;
   b = Math.floor(Math.random() * 10) + 1;
