@@ -37,16 +37,7 @@ let nextQuestion = (isItWrong, diff) => {
 };
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
-});
-
-app.post("/", (req, res, next) => {
-  // if (req.body.hasOwnProperty("addEasy")) res.redirect("/add");
-  // else if (req.body.hasOwnProperty("sub")) res.redirect("/sub");
-  // else if (req.body.hasOwnProperty("mul")) res.redirect("/mul");
-  // else if (req.body.hasOwnProperty("div")) res.redirect("/div");
-  // else if (req.body.hasOwnProperty("score")) res.redirect("/result");
-  // else res.redirect("/");
+  res.render("index");
 });
 
 app.get("/add/:diff", (req, res) => {
