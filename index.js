@@ -43,8 +43,11 @@ app.get("/", (req, res) => {
 app.get("/add/:diff", (req, res) => {
   let diff = req.params.diff;
   nextQuestion(isItWrong, diff);
+  res.render("question", {
+    question: a + " + " + b,
+    isItWrong: isItWrong,
+  });
   isItWrong = false;
-  res.render("question", { question: a + " + " + b });
 });
 
 app.post("/add/:diff", (req, res) => {
@@ -62,8 +65,11 @@ app.post("/add/:diff", (req, res) => {
 app.get("/sub/:diff", (req, res) => {
   let diff = req.params.diff;
   nextQuestion(isItWrong, diff);
+  res.render("question", {
+    question: a + " - " + b,
+    isItWrong: isItWrong,
+  });
   isItWrong = false;
-  res.render("question", { question: a + " - " + b });
 });
 
 app.post("/sub/:diff", (req, res) => {
@@ -81,8 +87,11 @@ app.post("/sub/:diff", (req, res) => {
 app.get("/mul/:diff", (req, res) => {
   let diff = req.params.diff;
   nextQuestion(isItWrong, diff);
+  res.render("question", {
+    question: a + " x " + b,
+    isItWrong: isItWrong,
+  });
   isItWrong = false;
-  res.render("question", { question: a + " x " + b });
 });
 
 app.post("/mul/:diff", (req, res) => {
@@ -100,8 +109,11 @@ app.post("/mul/:diff", (req, res) => {
 app.get("/div/:diff", (req, res) => {
   let diff = req.params.diff;
   nextQuestion(isItWrong, diff);
+  res.render("question", {
+    question: a + " / " + b,
+    isItWrong: isItWrong,
+  });
   isItWrong = false;
-  res.render("question", { question: c + " / " + b });
 });
 
 app.post("/div/:diff", (req, res) => {
@@ -114,17 +126,6 @@ app.post("/div/:diff", (req, res) => {
     isItWrong = true;
     res.redirect("/div/" + diff);
   }
-});
-
-app.get("/wrong", (req, res) => {
-  res.render("result", {
-    score: "correct: " + correct + " wrong: " + wrong,
-    wrong: "Wrong",
-  });
-});
-
-app.post("/wrong", (req, res) => {
-  res.redirect("/");
 });
 
 app.get("/result", (req, res) => {
