@@ -110,7 +110,7 @@ app.get("/div/:diff", (req, res) => {
   let diff = req.params.diff;
   nextQuestion(isItWrong, diff);
   res.render("question", {
-    question: a + " / " + b,
+    question: c + " / " + b,
     isItWrong: isItWrong,
   });
   isItWrong = false;
