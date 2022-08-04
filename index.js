@@ -6,26 +6,26 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 let correct = 0;
-let wrong = 0;
-let a, b, c;
+let incorrect = 0;
+let number1, number2, number3;
 let isItWrong = false;
 
 let randomNumberEasy = () => {
-  a = Math.floor(Math.random() * 10) + 1;
-  b = Math.floor(Math.random() * 10) + 1;
-  c = a * b;
+  number1 = Math.floor(Math.random() * 10) + 1;
+  number2 = Math.floor(Math.random() * 10) + 1;
+  number3 = number1 * number2;
 };
 
 let randomNumberMedium = () => {
-  a = Math.floor(Math.random() * 15) + 10;
-  b = Math.floor(Math.random() * 15) + 10;
-  c = a * b;
+  number1 = Math.floor(Math.random() * 15) + 10;
+  number2 = Math.floor(Math.random() * 15) + 10;
+  number3 = number1 * number2;
 };
 
 let randomNumberHard = () => {
-  a = Math.floor(Math.random() * 25) + 25;
-  b = Math.floor(Math.random() * 25) + 25;
-  c = a * b;
+  number1 = Math.floor(Math.random() * 25) + 25;
+  number2 = Math.floor(Math.random() * 25) + 25;
+  number3 = number1 * number2;
 };
 
 let nextQuestion = (isItWrong, diff) => {
@@ -44,21 +44,22 @@ app.get("/add/:diff", (req, res) => {
   let diff = req.params.diff;
   nextQuestion(isItWrong, diff);
   res.render("question", {
-    question: a + " + " + b,
+    question: number1 + " + " + number2,
     isItWrong: isItWrong,
   });
   isItWrong = false;
 });
 
 app.post("/add/:diff", (req, res) => {
-  let diff = req.params.diff;
-  if (Number(req.body.answer) == a + b) {
+  const diff = req.params.diff;
+  const question = "/add/" + diff;
+  if (Number(req.body.answer) == number1 + number2) {
     correct++;
-    res.redirect("/add/" + diff);
+    res.redirect(question);
   } else {
-    wrong++;
+    incorrect++;
     isItWrong = true;
-    res.redirect("/add/" + diff);
+    res.redirect(question);
   }
 });
 
@@ -66,21 +67,22 @@ app.get("/sub/:diff", (req, res) => {
   let diff = req.params.diff;
   nextQuestion(isItWrong, diff);
   res.render("question", {
-    question: a + " - " + b,
+    question: number1 + " - " + number2,
     isItWrong: isItWrong,
   });
   isItWrong = false;
 });
 
 app.post("/sub/:diff", (req, res) => {
-  let diff = req.params.diff;
-  if (Number(req.body.answer) == a - b) {
+  const diff = req.params.diff;
+  const question = "/sub/" + diff;
+  if (Number(req.body.answer) == number1 - number2) {
     correct++;
-    res.redirect("/sub/" + diff);
+    res.redirect(question);
   } else {
-    wrong++;
+    incorrect++;
     isItWrong = true;
-    res.redirect("/sub/" + diff);
+    res.redirect(question);
   }
 });
 
@@ -88,21 +90,22 @@ app.get("/mul/:diff", (req, res) => {
   let diff = req.params.diff;
   nextQuestion(isItWrong, diff);
   res.render("question", {
-    question: a + " x " + b,
+    question: number1 + " x " + number2,
     isItWrong: isItWrong,
   });
   isItWrong = false;
 });
 
 app.post("/mul/:diff", (req, res) => {
-  let diff = req.params.diff;
-  if (Number(req.body.answer) == a * b) {
+  const diff = req.params.diff;
+  const question = "/mul/" + diff;
+  if (Number(req.body.answer) == number1 * number2) {
     correct++;
-    res.redirect("/mul/" + diff);
+    res.redirect(question);
   } else {
-    wrong++;
+    incorrect++;
     isItWrong = true;
-    res.redirect("/mul/" + diff);
+    res.redirect(question);
   }
 });
 
@@ -110,27 +113,29 @@ app.get("/div/:diff", (req, res) => {
   let diff = req.params.diff;
   nextQuestion(isItWrong, diff);
   res.render("question", {
-    question: c + " / " + b,
+    question: number3 + " / " + number2,
     isItWrong: isItWrong,
   });
   isItWrong = false;
 });
 
 app.post("/div/:diff", (req, res) => {
-  let diff = req.params.diff;
-  if (Number(req.body.answer) == a) {
+const diff = req.params.diff;
+  const question = "/div/" + diff;
+  
+  if (Number(req.body.answer) == number1) {
     correct++;
-    res.redirect("/div/" + diff);
+    res.redirect(question);
   } else {
-    wrong++;
+    incorrect++;
     isItWrong = true;
-    res.redirect("/div/" + diff);
+    res.redirect(question);
   }
 });
 
 app.get("/result", (req, res) => {
   res.render("result", {
-    score: "correct: " + correct + " incorrect: " + wrong,
+    score: "correct: " + correct + " incorrect: " + incorrect,
     wrong: "",
   });
 });
